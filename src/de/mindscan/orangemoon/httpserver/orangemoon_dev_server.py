@@ -61,7 +61,7 @@ async def provide_kanji_radicals():
 def and_set(a,b):
     return a & b
 
-@app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals/{{selection}}")
+@app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals/{selection}")
 async def provide_kanji_by_radical_selection(selection:str=''):
     global myJamDict
     trimmed = selection.strip();
