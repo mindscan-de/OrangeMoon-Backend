@@ -35,6 +35,7 @@ sys.path.insert(0,SRC_BASE_DIR)
 import os
 import json
 import uuid as uid
+from functools import reduce
 
 from jamdict import Jamdict
 
@@ -56,3 +57,22 @@ async def provide_kanji_radicals():
     global myJamDict
     radicalKeys=[x for x in myJamDict.radk.keys()]
     return {'values':radicalKeys }
+
+def and_set(a,b):
+    return a & b
+
+@app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals/{{selection}}")
+async def provide_kanji_by_radical_selection(selection:str=''):
+    global myJamDict
+    trimmed = selection.strip();
+    
+    if trimmed == '':
+        return {'values':[]}
+    
+    filtered_radicals = filter(lambda candidate : candidate in myJamDict.radk,trimmed)
+    radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
+    selected_kanji = reduce ( and_set, radical_sets)
+    
+    
+    return {'values':selected_kanji }
+
