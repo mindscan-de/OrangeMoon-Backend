@@ -25,7 +25,6 @@ SOFTWARE.
 
 @autor: Maxim Gansert
 '''
-
 SRC_BASE_DIR  = '../../../../../src'
 DATA_BASE_DIR = '../../../../../data'
 
@@ -64,15 +63,18 @@ def and_set(a,b):
 @app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals")
 async def provide_kanji_by_radical_selection(selected:str=''):
     global myJamDict
-    trimmed = selected.strip();
+    trimmed = selected.strip()
     
-    if trimmed == '':
+    if len(trimmed)== 0:
         return {'values':[]}
     
-    filtered_radicals = filter(lambda candidate : candidate in myJamDict.radk,trimmed)
-    radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
-    selected_kanji = reduce ( and_set, radical_sets, [])
+    filtered_radicals = list(filter(lambda candidate : candidate in myJamDict.radk, trimmed ))
     
+    if len(filtered_radicals)==0:
+        return {'values':[]}
+    
+    radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
+    selected_kanji = reduce ( and_set, radical_sets)
     
     return {'values':selected_kanji }
 
