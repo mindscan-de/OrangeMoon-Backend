@@ -61,17 +61,17 @@ async def provide_kanji_radicals():
 def and_set(a,b):
     return a & b
 
-@app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals/{selection}")
-async def provide_kanji_by_radical_selection(selection:str=''):
+@app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals")
+async def provide_kanji_by_radical_selection(selected:str=''):
     global myJamDict
-    trimmed = selection.strip();
+    trimmed = selected.strip();
     
     if trimmed == '':
         return {'values':[]}
     
     filtered_radicals = filter(lambda candidate : candidate in myJamDict.radk,trimmed)
     radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
-    selected_kanji = reduce ( and_set, radical_sets)
+    selected_kanji = reduce ( and_set, radical_sets, [])
     
     
     return {'values':selected_kanji }
