@@ -42,6 +42,7 @@ That is the setup. A browser-based Angular App with a python based backend.
 
 * Provide all Radicals **[done]**
 * Filter/Select Kanji by selecting Radicals **[done]**
+* Provide remaining Radicals for kanji by selecting Radicals **[done]** 
 * Provide all Radicals (with additional info strokes etc.) (Ordered by Number of Strokes)
 * Update the remaining Radicals according to previous selection (enable/disable) remaining radicals 
 * Show filtered kanji (Ordered by number of strokes)
