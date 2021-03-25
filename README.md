@@ -51,7 +51,7 @@ That is the setup. A browser-based Angular App with a python based backend.
  
 ## Nice to have
 
-* Quiz
+* Quiz single mode
 * Select for Quiz / Build a quiz
 * Grade 1,2,3,4,5,6
 * JLPT 5,4,3
@@ -67,6 +67,9 @@ That is the setup. A browser-based Angular App with a python based backend.
   e.g. tabemashou - let's eat together
 * provide the reading of a sentence (for the Translation memory)
 * input romaji support to just drop switching to the Japan-IME everytime
+
+* Quiz in a competitive mode
+** e.g same questions for two players / round based - dueling mode, and see whether the opponent made an error
 
 ## TODO
 
