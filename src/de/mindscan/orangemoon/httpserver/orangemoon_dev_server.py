@@ -43,6 +43,7 @@ from fastapi import FastAPI, Form, HTTPException
 
 myJamDict = Jamdict()
 
+global_radicalKeys=[x for x in myJamDict.radk.keys()]
 
 app = FastAPI()
 
@@ -53,15 +54,38 @@ def read_root():
 
 @app.get("/OrangeMoon/rest/getKanjiRadicals")
 async def provide_kanji_radicals():
-    global myJamDict
-    radicalKeys=[x for x in myJamDict.radk.keys()]
-    return {'values':radicalKeys }
+    global global_radicalKeys
+    return {'values':global_radicalKeys }
 
 def and_set(a,b):
     return a & b
 
 def or_set(a,b):
     return a | b
+
+
+@app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals2")
+async def provide_kanji_by_radical_selection_ii(selected:str=''):
+    global myJamDict
+    global global_radicalKeys
+    trimmed = selected.strip()
+    
+    if len(trimmed)== 0:
+        return {'values':[], 'remaining_radicals':global_radicalKeys}
+    
+    filtered_radicals = list(filter(lambda candidate : candidate in myJamDict.radk, trimmed ))
+    
+    if len(filtered_radicals)==0:
+        return {'values':[], 'remaining_radicals':global_radicalKeys}
+
+    radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
+    remaining_kanji = reduce ( and_set, radical_sets)
+    
+    allRemainingRadicalSet = [set(myJamDict.krad[x]) for x in remaining_kanji]
+    
+    remaining_radicals = reduce(or_set, allRemainingRadicalSet)
+    return {'values': remaining_kanji, 'remaining_radicals':remaining_radicals }
+    
 
 
 @app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals")
