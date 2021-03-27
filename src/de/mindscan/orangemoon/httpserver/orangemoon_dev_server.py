@@ -106,23 +106,3 @@ async def provide_kanji_by_radical_selection(selected:str=''):
     
     return {'values':selected_kanji }
 
-@app.get("/OrangeMoon/rest/getRemainingRadicalsBySelectedRadicals")
-async def provide_remaining_radicals_by_radical_selection(selected:str=''):
-    global myJamDict
-    trimmed = selected.strip()
-    
-    if len(trimmed)== 0:
-        return {'values':[]}
-    
-    filtered_radicals = list(filter(lambda candidate : candidate in myJamDict.radk, trimmed ))
-    
-    if len(filtered_radicals)==0:
-        return {'values':[]}
-    
-    radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
-    remaining_kanji = reduce ( and_set, radical_sets)
-    
-    allRemainingRadicalSet = [set(myJamDict.krad[x]) for x in remaining_kanji]
-    
-    remaining_radicals = reduce(or_set, allRemainingRadicalSet)
-    return {'values':remaining_radicals }
