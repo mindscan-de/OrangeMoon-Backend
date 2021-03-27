@@ -28,6 +28,7 @@ SOFTWARE.
 SRC_BASE_DIR  = '../../../../../src'
 DATA_BASE_DIR = '../../../../../data'
 
+
 import sys
 sys.path.insert(0,SRC_BASE_DIR)
 
@@ -43,7 +44,10 @@ from fastapi import FastAPI, Form, HTTPException
 
 myJamDict = Jamdict()
 
-global_radicalKeys=[x for x in myJamDict.radk.keys()]
+RADICAL_STROKE_DATA = 'kanjiRadicalStrokeData.json'
+
+with open(os.path.join(DATA_BASE_DIR,RADICAL_STROKE_DATA),'r') as jsonFile:
+    global_radicalDict = json.load( jsonFile);
 
 app = FastAPI()
 
@@ -54,8 +58,11 @@ def read_root():
 
 @app.get("/OrangeMoon/rest/getKanjiRadicals")
 async def provide_kanji_radicals():
-    global global_radicalKeys
-    return {'values':global_radicalKeys }
+    return {'values':global_radicalDict['list'] }
+
+@app.get("/OrangeMoon/rest/getKanjiRadicalsWithStrokes")
+async def provide_kanji_radicals_with_strokes():
+    return global_radicalDict
 
 def and_set(a,b):
     return a & b
@@ -71,7 +78,7 @@ async def provide_kanji_by_radical_selection(selected:str=''):
     if len(trimmed)== 0:
         return {'values':[]}
     
-    filtered_radicals = list(filter(lambda candidate : candidate in myJamDict.radk, trimmed ))
+    filtered_radicals = list(filter(lambda candidate : candidate in global_radicalDict['list'], trimmed ))
     
     if len(filtered_radicals)==0:
         return {'values':[]}
@@ -84,16 +91,16 @@ async def provide_kanji_by_radical_selection(selected:str=''):
 @app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals2")
 async def provide_kanji_by_radical_selection_ii(selected:str=''):
     global myJamDict
-    global global_radicalKeys
+    global global_radicalDict
     trimmed = selected.strip()
     
     if len(trimmed)== 0:
-        return {'values':[], 'remaining_radicals':global_radicalKeys}
+        return {'values':[], 'remaining_radicals':global_radicalDict['list']}
     
-    filtered_radicals = list(filter(lambda candidate : candidate in myJamDict.radk, trimmed ))
+    filtered_radicals = list(filter(lambda candidate : candidate in global_radicalDict['list'], trimmed ))
     
     if len(filtered_radicals)==0:
-        return {'values':[], 'remaining_radicals':global_radicalKeys}
+        return {'values':[], 'remaining_radicals':global_radicalDict['list']}
 
     radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
     remaining_kanji = reduce ( and_set, radical_sets)
