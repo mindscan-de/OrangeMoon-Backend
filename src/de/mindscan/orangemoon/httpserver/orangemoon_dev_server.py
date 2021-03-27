@@ -110,3 +110,12 @@ async def provide_kanji_by_radical_selection_ii(selected:str=''):
     remaining_radicals = reduce(or_set, allRemainingRadicalSet)
     return {'values': remaining_kanji, 'remaining_radicals':remaining_radicals }
 
+@app.get("/OrangeMoon/rest/strictLookupKanji")
+async def lookup_kanji(selected:str=''):
+    global myJamDict
+    
+    trimmed = selected.strip()
+    
+    result = myJamDict.lookup(trimmed, strict_lookup=True, lookup_ne=True)
+    
+    return result.to_json()
