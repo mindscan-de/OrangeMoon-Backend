@@ -22,7 +22,7 @@ convenience I want to type in romaji but the shown input should be kana, not bec
 skill but, I don't want to switch back and forth between the IME and the "normal" layout. But
 it should be able to work all ways for doing queries (romaji, kana, kana+ime->kanji).
 
-This grouping thing i often encountered in learning apps e.g. with content from the NHK website.
+This grouping thing, i often encountered in learning apps e.g. with content from the NHK website.
 
 And the last use case is to remember translations (and record and provide references) and turn 
 them into a quiz, so I can reuse the made effort to hone my japanese language skills. E.g. for
@@ -43,23 +43,22 @@ That is the setup. A browser-based Angular App with a python based backend.
 * Provide all Radicals **[done]**
 * Filter/Select Kanji by selecting Radicals **[done]**
 * Provide remaining Radicals for kanji by selecting Radicals **[done]** 
-* Provide all Radicals (with additional info strokes etc.) (Ordered by Number of Strokes)
-* Update the remaining Radicals according to previous selection (enable/disable) remaining radicals 
+* Provide all Radicals (with additional info strokes etc.) (Ordered by Number of Strokes) **[done]**
+* Update the remaining Radicals according to previous selection (enable/disable) remaining radicals **[done]** 
 * Show filtered kanji (Ordered by number of strokes)
 
+* Lookup of kanji or a seqence of kanji
 * Show info for a given / selected kanji
+
  
 ## Nice to have
 
 * Quiz single mode
 * Select for Quiz / Build a quiz
 * Grade 1,2,3,4,5,6
-* JLPT 5,4,3
+* JLPT 5,4,3,2,1
 
-* Verbs
-* Adjectives
-
-* Translation Memory for a book you read...
+* Translation Memory for a reading a book ... e.g. interesting phrases
 
 * Make a Quiz from the translation memory
 
@@ -68,8 +67,31 @@ That is the setup. A browser-based Angular App with a python based backend.
 * provide the reading of a sentence (for the Translation memory)
 * input romaji support to just drop switching to the Japan-IME everytime
 
-* Quiz in a competitive mode
-** e.g same questions for two players / round based - dueling mode, and see whether the opponent made an error
+# Quiz-Data:
+# * Katakana - Readings
+# * Hiragana - Readings
+# * Kanji - Vocabulary
+# * English - Translation
+
+# Quiz-Data:
+# * Verbs
+# * Adjective
+# * Particles
+# * Phrases 1--1000
+ 
+# Quiz-Game
+# * Name of Quiz
+# * Players
+# * Give different players the same questions Catalog
+# * Roundbased
+# * Give hint, when opposite player did well or not.
+
+# Translation Memory
+# * Project Name (Author, Book, Pages)
+# * Sentence - Mixed 
+# * Reading - Mixed (Katakana, Hiragana)
+# * Translation - English / German / Other?
+
 
 ## TODO
 
