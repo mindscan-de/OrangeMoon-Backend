@@ -67,31 +67,32 @@ That is the setup. A browser-based Angular App with a python based backend.
 * provide the reading of a sentence (for the Translation memory)
 * input romaji support to just drop switching to the Japan-IME everytime
 
-# Quiz-Data:
-# * Katakana - Readings
-# * Hiragana - Readings
-# * Kanji - Vocabulary
-# * English - Translation
+* Quiz-Data:
+  * Katakana - Readings
+  * Hiragana - Readings
+  * Kanji - Vocabulary
+  * English - Translation
 
-# Quiz-Data:
-# * Verbs
-# * Adjective
-# * Particles
-# * Phrases 1--1000
+* Quiz-Data:
+  * Verbs
+  * Adjective
+  * Particles
+  * Phrases 1--1000
  
-# Quiz-Game
-# * Name of Quiz
-# * Players
-# * Give different players the same questions Catalog
-# * Roundbased
-# * Give hint, when opposite player did well or not.
+* Quiz-Game
+  * Name of Quiz
+  * Players
+  * Give different players the same questions Catalog
+  * Roundbased
+  * Give hint, when opposite player did well or not.
 
-# Translation Memory
-# * Project Name (Author, Book, Pages)
-# * Sentence - Mixed 
-# * Reading - Mixed (Katakana, Hiragana)
-# * Translation - English / German / Other?
+*  Translation Memory
+  * Project Name (Author, Book, Pages)
+  * Sentence - Mixed 
+  * Reading - Mixed (Katakana, Hiragana)
+  * Translation - English / German / Other?
 
+* incorporate the (japanese / english) tatoeba data.
 
 ## TODO
 
