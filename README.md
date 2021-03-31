@@ -86,7 +86,7 @@ That is the setup. A browser-based Angular App with a python based backend.
   * Roundbased
   * Give hint, when opposite player did well or not.
 
-*  Translation Memory
+*  Translation Memory - a form of translation memory is the tatoeba project (i didn't had this in mind, but it is quite similar in how the data is organized; But i will give it a thought for sure. Viewing the data, the sentences in this corpus do not seem to be that useful in general, but i only checked some of these. I found the annotated and transcribed data useful on the first sight, but i will give it another look later in time.)
   * Project Name (Author, Book, Pages)
   * Sentence - Mixed 
   * Reading - Mixed (Katakana, Hiragana)
