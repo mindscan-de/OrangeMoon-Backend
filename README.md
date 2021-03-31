@@ -79,7 +79,7 @@ That is the setup. A browser-based Angular App with a python based backend.
   * Particles
   * Phrases 1--1000
  
-* Quiz-Game
+* Quiz-Game -- maybe use fastapi Websockets - https://fastapi.tiangolo.com/advanced/websockets/
   * Name of Quiz
   * Players
   * Give different players the same questions Catalog
@@ -93,6 +93,8 @@ That is the setup. A browser-based Angular App with a python based backend.
   * Translation - English / German / Other?
 
 * incorporate the (japanese / english) tatoeba data.
+* incorporate the JLPT New - data, only JLPT old is available in the dataset?
+  * e.g. http://www.tanos.co.uk/jlpt/
 
 ## TODO
 
