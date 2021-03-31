@@ -95,6 +95,11 @@ That is the setup. A browser-based Angular App with a python based backend.
 * incorporate the (japanese / english) tatoeba data.
 * incorporate the JLPT New - data, only JLPT old is available in the dataset?
   * e.g. http://www.tanos.co.uk/jlpt/
+* check whether https://wortschatz.uni-leipzig.de/de/download/Japanese#jpn_newscrawl_2018 is useful..
+
+
+Also i find this idea quite interesting. romanji to kanji/hiragana/katakana input transliteration understood as a NMT-Task. Actually this is quite a neat idea to do. I think i will give it a second thought, for a different project. This should be tried with transformers instead of an RNN...
+* https://github.com/Kyubyong/neural_japanese_transliterator
 
 ## TODO
 
