@@ -45,9 +45,14 @@ from fastapi import FastAPI, Form, HTTPException
 myJamDict = Jamdict()
 
 RADICAL_STROKE_DATA = 'kanjiRadicalStrokeData.json'
+KANJI_STROKE_DATA = 'kanjiStrokeData.json'
 
 with open(os.path.join(DATA_BASE_DIR,RADICAL_STROKE_DATA),'r') as jsonFile:
     global_radicalDict = json.load( jsonFile);
+    
+with open(os.path.join(DATA_BASE_DIR,KANJI_STROKE_DATA),'r') as jsonFile:
+    global_kanjiDict = json.load( jsonFile);
+
 
 app = FastAPI()
 
@@ -70,6 +75,18 @@ def and_set(a,b):
 def or_set(a,b):
     return a | b
 
+# This is quite slow, but ist just a proof of concept - the results are
+# but the kanji are grouped by stroke order and as second criteria by frequency
+# but the access performance can be improved 
+def sort_by_globalKanji(remaining_kanji):
+    global global_kanjiDict
+    result = []
+    for kanji in global_kanjiDict['list']:
+        if kanji in remaining_kanji:
+            result.append(kanji)
+    return result
+
+
 @app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals")
 async def provide_kanji_by_radical_selection(selected:str=''):
     global myJamDict
@@ -86,7 +103,10 @@ async def provide_kanji_by_radical_selection(selected:str=''):
     radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
     selected_kanji = reduce ( and_set, radical_sets)
     
-    return {'values':selected_kanji }
+    sorted_selected_kanji = sort_by_globalKanji(selected_kanji)
+    
+    return {'values':sorted_selected_kanji }
+
 
 @app.get("/OrangeMoon/rest/getKanjiBySelectedRadicals2")
 async def provide_kanji_by_radical_selection_ii(selected:str=''):
@@ -105,10 +125,12 @@ async def provide_kanji_by_radical_selection_ii(selected:str=''):
     radical_sets = map(lambda candidate: myJamDict.radk[candidate], filtered_radicals)
     remaining_kanji = reduce ( and_set, radical_sets)
     
+    sorted_remaining_kanji = sort_by_globalKanji(remaining_kanji)
+    
     allRemainingRadicalSet = [set(myJamDict.krad[x]) for x in remaining_kanji]
     
     remaining_radicals = reduce(or_set, allRemainingRadicalSet)
-    return {'values': remaining_kanji, 'remaining_radicals':remaining_radicals }
+    return {'values': sorted_remaining_kanji, 'remaining_radicals':remaining_radicals }
 
 @app.get("/OrangeMoon/rest/strictLookupKanji")
 async def lookup_kanji(selected:str=''):

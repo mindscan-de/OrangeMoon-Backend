@@ -45,9 +45,9 @@ That is the setup. A browser-based Angular App with a python based backend.
 * Provide remaining Radicals for kanji by selecting Radicals **[done]** 
 * Provide all Radicals (with additional info strokes etc.) (Ordered by Number of Strokes) **[done]**
 * Update the remaining Radicals according to previous selection (enable/disable) remaining radicals **[done]** 
-* Show filtered kanji (Ordered by number of strokes)
+* Show filtered kanji (Ordered by number of strokes) **[done]**
+* Lookup of kanji or a seqence of kanji **[done]**
 
-* Lookup of kanji or a seqence of kanji
 * Show info for a given / selected kanji
 
  
@@ -103,4 +103,18 @@ Also i find this idea quite interesting. romanji to kanji/hiragana/katakana inpu
 
 ## TODO
 
-* Don't know yet...
+* Support _, %  
+** and some japanese rewrites,
+** and some english rewrites
+** support buttons for fast selection
+* id#______(numeric)
+* sort all kanji by strokeorder.
+
+## Supported Queries
+
+* kana (hiragana, katakana)
+* kanji
+* id#idseq  (idseq=numeric value) e.g. for providing a permalink?
+* _ as a placeholder for one char
+* % as a placeholder for multiple chars
+* 
