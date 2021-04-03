@@ -141,3 +141,28 @@ async def lookup_kanji(selected:str=''):
     result = myJamDict.lookup(trimmed, strict_lookup=True, lookup_ne=True)
     
     return result.to_json()
+
+quiz_list = [
+    {'name':'Grade 1', 'items':80},
+    {'name':'Grade 2', 'items':160},
+    {'name':'Grade 3', 'items':200},
+    {'name':'Grade 4', 'items':200},
+    {'name':'Grade 5', 'items':185},
+    {'name':'Grade 6', 'items':181} ]
+
+@app.get("/OrangeMoon/rest/getQuizList")
+async def get_quiz_list():
+    return { 'values': quiz_list}
+
+
+@app.get("/OrangeMoon/rest/getQuizData")
+async def get_quiz_data(quizname: str):
+    for item in quiz_list:
+        if item['name']==quizname:
+            with open(os.path.join(DATA_BASE_DIR, 'quiz_data',item['name']+".json"), 'r') as jsonFile:
+                return json.load(jsonFile) 
+                # otherwise load json and return json
+            pass
+        
+    # TODO: 404
+    pass 
