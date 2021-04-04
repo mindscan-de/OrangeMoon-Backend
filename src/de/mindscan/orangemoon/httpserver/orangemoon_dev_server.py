@@ -143,6 +143,8 @@ async def lookup_kanji(selected:str=''):
     return result.to_json()
 
 quiz_list = [
+    {'name':'JLPT N5 Kanji', 'items': 103},
+    {'name':'JLPT N4 Kanji', 'items': 181},
     {'name':'Grade 1', 'items':80},
     {'name':'Grade 2', 'items':160},
     {'name':'Grade 3', 'items':200},
