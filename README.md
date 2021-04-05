@@ -3,9 +3,11 @@ Japanese Dictionary App - Backend (based on fastapi and jamdict)
 
 ## Python Dependencies
 
-* jamdict -- https://github.com/neocl/jamdict 
+* jamdict -- https://github.com/neocl/jamdict
   * use the given installation guide to also have access to the collected dictionary data
   * then check the installation according to the installation guide
+  * MIT License
+  
 
 # The Idea
 
@@ -48,15 +50,22 @@ That is the setup. A browser-based Angular App with a python based backend.
 * Show filtered kanji (Ordered by number of strokes) **[done]**
 * Lookup of kanji or a seqence of kanji **[done]**
 
+* Show quiz data for a selected Quiz **[done]**
+* Show list of Quizes **[done]**
+
 * Show info for a given / selected kanji
 
- 
 ## Nice to have
+
+* Create Kanji Quiz-Data
+** Grade 1,2,3,4,5,6  **[done]**
+*** Kanji List **[done]**
+** JLPT 5,4,3,2,1
+*** Kanji List N4, N5 **[done]**
+
 
 * Quiz single mode
 * Select for Quiz / Build a quiz
-* Grade 1,2,3,4,5,6
-* JLPT 5,4,3,2,1
 
 * Translation Memory for a reading a book ... e.g. interesting phrases
 
@@ -76,6 +85,7 @@ That is the setup. A browser-based Angular App with a python based backend.
 * Quiz-Data:
   * Verbs
   * Adjective
+  * Adverbs
   * Particles
   * Phrases 1--1000
  
@@ -92,14 +102,16 @@ That is the setup. A browser-based Angular App with a python based backend.
   * Reading - Mixed (Katakana, Hiragana)
   * Translation - English / German / Other?
 
-* incorporate the (japanese / english) tatoeba data.
+* incorporate the (japanese / english) tatoeba data. **[obsolete]**
+  * I think I will drop this idea for now, mainly because of the data that each sentence has its own contributors the CC-BY license is quite hard to fulfill for each sentence, that would require essentailly build the same database as the tatoeba website, but then i could also just reimplement the whole project. 
 * incorporate the JLPT New - data, only JLPT old is available in the dataset?
+  * there is no official JLPT-N{1..5} catalog only unofficial ones from different companies
   * e.g. http://www.tanos.co.uk/jlpt/
+  * it is probably best to just skip the JLPT N3 test and just have it as some kind of learning milestone.
+  * 
 * check whether https://wortschatz.uni-leipzig.de/de/download/Japanese#jpn_newscrawl_2018 is useful..
 
 
-Also i find this idea quite interesting. romanji to kanji/hiragana/katakana input transliteration understood as a NMT-Task. Actually this is quite a neat idea to do. I think i will give it a second thought, for a different project. This should be tried with transformers instead of an RNN...
-* https://github.com/Kyubyong/neural_japanese_transliterator
 
 ## TODO
 
@@ -117,4 +129,37 @@ Also i find this idea quite interesting. romanji to kanji/hiragana/katakana inpu
 * id#idseq  (idseq=numeric value) e.g. for providing a permalink?
 * _ as a placeholder for one char
 * % as a placeholder for multiple chars
-* 
+
+
+# Licenses
+
+## License
+
+This code itself is licensed under the MIT-License. 
+
+However, this license doesn't apply to the dictionary data. The dictionary data
+is licensed differently and is not delivered as part of this project. You may 
+have to install the dictionary data for yourself, and if you use the dictionary 
+data you have to respect the license agreement for the dictionary files.
+
+## Data Dependencies
+
+* JMdict: http://edrdg.org/jmdict/edict_doc.html
+  * http://www.edrdg.org/edrdg/licence.html
+* kanjidic2: https://www.edrdg.org/wiki/index.php/KANJIDIC_Project
+* JMnedict: https://www.edrdg.org/enamdict/enamdict_doc.html
+* KRADFILE: http://www.edrdg.org/krad/kradinf.html
+
+* http://www.edrdg.org/jmdict/edict.htmt
+  * CC BY SA 3.0
+
+## Data Licenses
+
+This site uses the (JMdict/EDICT)[http://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project]
+and (KANJIDIC)[http://www.edrdg.org/wiki/index.php/KANJIDIC_Project] dictionary files. These files are 
+the property of the (Electronic Dictionary Research and Development Group)[http://www.edrdg.org/], and 
+are used in conformance with the Group's (licence)[http://www.edrdg.org/edrdg/licence.html]. 
+  
+This package uses the JMdict/EDICT and KANJIDIC dictionary files. These files are the property 
+of the Electronic Dictionary Research and Development Group, and are used in conformance with 
+the Group's licence.   
