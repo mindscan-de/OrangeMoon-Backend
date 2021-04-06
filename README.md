@@ -118,11 +118,13 @@ That is the setup. A browser-based Angular App with a python based backend.
 
 
 * implement a quiz-dataset description inside the quiz dataset, so these can be made more general, if the dataset
-  doesn't match the Kanji, Kana, Meaning Layout (e.g.) the Kana-Datasets with Kana-Romaji. 
+  doesn't match the Kanji, Kana, Meaning Layout (e.g.) the Kana-Datasets with Kana-Romaji. Why make this more general, 
+  is to provide more quizzes with different abilities, also to provide more data, eg. ids, which should not pop up
+  as a question. the ids can be used to provide statistics about questions and over/throughout different quizzes. 
 
     .kanji
     .kana.kun[]{max2}||.kana.on[]{max1}
-    .meaning[]{<=strlen(11)}
+    .meaning[]{++<=strlen(11)}
     1-2 Kanji - Kana
     2-1 Kana - Kanji
     1-3 Kanji - English
