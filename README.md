@@ -67,14 +67,16 @@ That is the setup. A browser-based Angular App with a python based backend.
 * Quiz single mode
 * Select for Quiz / Build a quiz
 
-* Translation Memory for a reading a book ... e.g. interesting phrases
 
+* Translation Memory for a reading a book ... e.g. interesting phrases
 * Make a Quiz from the translation memory
+
 
 * also detect negative/past/negative+past tense and other suffixes, which aren't part of the jamdict 
   e.g. tabemashou - let's eat together
 * provide the reading of a sentence (for the Translation memory)
-* input romaji support to just drop switching to the Japan-IME everytime
+* input romaji support to just drop switching to the Japan-IME everytime e.g. between different inputfields in the same application
+
 
 * Quiz-Data:
   * Katakana - Readings
@@ -96,22 +98,37 @@ That is the setup. A browser-based Angular App with a python based backend.
   * Roundbased
   * Give hint, when opposite player did well or not.
 
+
 *  Translation Memory - a form of translation memory is the tatoeba project (i didn't had this in mind, but it is quite similar in how the data is organized; But i will give it a thought for sure. Viewing the data, the sentences in this corpus do not seem to be that useful in general, but i only checked some of these. I found the annotated and transcribed data useful on the first sight, but i will give it another look later in time.)
   * Project Name (Author, Book, Pages)
   * Sentence - Mixed 
   * Reading - Mixed (Katakana, Hiragana)
   * Translation - English / German / Other?
+  
 
 * incorporate the (japanese / english) tatoeba data. **[obsolete]**
   * I think I will drop this idea for now, mainly because of the data that each sentence has its own contributors the CC-BY license is quite hard to fulfill for each sentence, that would require essentailly build the same database as the tatoeba website, but then i could also just reimplement the whole project. 
-* incorporate the JLPT New - data, only JLPT old is available in the dataset?
+* incorporate the JLPT New - data, only the former official JLPT is available in the dataset
   * there is no official JLPT-N{1..5} catalog only unofficial ones from different companies
   * e.g. http://www.tanos.co.uk/jlpt/
   * it is probably best to just skip the JLPT N3 test and just have it as some kind of learning milestone.
-  * 
+
+
 * check whether https://wortschatz.uni-leipzig.de/de/download/Japanese#jpn_newscrawl_2018 is useful..
 
 
+* implement a quiz-dataset description inside the quiz dataset, so these can be made more general, if the dataset
+  doesn't match the Kanji, Kana, Meaning Layout (e.g.) the Kana-Datasets with Kana-Romaji. 
+
+    .kanji
+    .kana.kun[]{max2}||.kana.on[]{max1}
+    .meaning[]{<=strlen(11)}
+    1-2 Kanji - Kana
+    2-1 Kana - Kanji
+    1-3 Kanji - English
+    3-1 English - Kanji
+    2-3 Kana - English
+    3-2 English - Kana
 
 ## TODO
 
