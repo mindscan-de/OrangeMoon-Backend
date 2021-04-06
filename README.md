@@ -54,6 +54,8 @@ That is the setup. A browser-based Angular App with a python based backend.
 * Show list of Quizes **[done]**
 
 * Show info for a given / selected kanji
+* Add very basic romaji input support, help to stop switching forth and back between the Japan-IME, between different inputfields in same page **[done]**
+* because of the romaji transliteration '%' and '_' can be directly used. **[done]** 
 
 ## Nice to have
 
@@ -75,7 +77,6 @@ That is the setup. A browser-based Angular App with a python based backend.
 * also detect negative/past/negative+past tense and other suffixes, which aren't part of the jamdict 
   e.g. tabemashou - let's eat together
 * provide the reading of a sentence (for the Translation memory)
-* input romaji support to just drop switching to the Japan-IME everytime e.g. between different inputfields in the same application
 
 
 * Quiz-Data:
@@ -135,9 +136,8 @@ That is the setup. A browser-based Angular App with a python based backend.
 ## TODO
 
 * Support _, %  
-** and some japanese rewrites,
-** and some english rewrites
-** support buttons for fast selection
+** and some japanese rewrites, from japaese '%' or japaese '*' to latin '%' and from japanese '_' and japanese '?' to latin '_' for search purposes 
+** support buttons for fast selection (e.g. 東京_)
 * id#______(numeric)
 * sort all kanji by strokeorder.
 
