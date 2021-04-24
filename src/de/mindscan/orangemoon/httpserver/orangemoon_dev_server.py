@@ -168,3 +168,48 @@ async def get_quiz_data(quizname: str):
         
     # TODO: 404
     pass 
+
+
+# ------------------------------
+# Stuff to manage a game channel
+# ------------------------------
+
+@app.post("/OrangeMoon/rest/createGameChannel")
+async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str = Form('')):
+    # will create a game channel
+    # * setup channel e.g. expire time?
+    # will create a new user
+    # user joins the game channel
+    
+    # return user token data and game channel info / accesstoken for channel
+    pass
+
+@app.post("/OrangeMoon/rest/joinGameChannel")
+async def join_game_channel(playerName:str = Form(...), quizRoomId:str= Form(...), quizRoomPassword:str = Form('')): 
+    # authenticate quizroomid / quizroom password
+    # will create a new user
+    # user joins the game channel
+    
+    # return user token data and game channel info / accesstoken for channel
+    pass
+
+@app.post("/OrangeMoon/rest/leaveGameChannel")
+async def leave_game_channel():
+    # if everyone left the cannel, we can
+    
+    # authenticate request, with user access token
+    # expiretime?
+    # if user is channel moderator -> switch the moderator role to someone in the channel 
+    # remove the user's elegibilty to access the channel data
+    
+    # return what?
+    pass
+
+# TODO: get channel info, in case the user reloads the page.
+
+# ---------------------------------------------------------------
+# Stuff to manage the game itself / Stuff to play the game itself
+# ---------------------------------------------------------------
+
+# TODO: for each round reset statistics
+# TODO: and all the game logic / prepare the game.
