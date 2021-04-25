@@ -45,7 +45,7 @@ from fastapi import FastAPI, Form, HTTPException
 # --------------
 # Game Machanics
 # --------------
-# from de.mindscan.orangemoon.httpserver.game_directory import GameDirectory
+from de.mindscan.orangemoon.httpserver.game_directory import GameDirectory
 from de.mindscan.orangemoon.httpserver.game_room import GameRoom
 from de.mindscan.orangemoon.httpserver.game_player import GamePlayer
 
@@ -182,7 +182,7 @@ async def get_quiz_data(quizname: str):
 # Stuff to manage a game channel
 # ------------------------------
 
-#gameDirectory = GameDirectory();
+gameDirectory = GameDirectory();
 
 @app.post("/OrangeMoon/rest/createGameChannel")
 async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str = Form('')):
@@ -197,10 +197,8 @@ async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str =
     # user joins the game channel
     newGameRoom.enterRoom(newPlayer)
     
-    # TODO 
-    # - register the game to the game directory, 
-    # - so we can request that game by a game id 
-     
+    # - register the game room to the game directory, 
+    gameRoomId = gameDirectory.register_game_room(newGameRoom) 
     
     # TODO: UserAuthn, UserAuthz -> Security 
     # return user token data and game channel info / accesstoken for channel
