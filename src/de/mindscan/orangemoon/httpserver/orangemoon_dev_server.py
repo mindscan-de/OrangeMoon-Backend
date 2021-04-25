@@ -42,6 +42,14 @@ from jamdict import Jamdict
 from fastapi import FastAPI, Form, HTTPException
 # from starlette.responses import FileResponse
 
+# --------------
+# Game Machanics
+# --------------
+# from de.mindscan.orangemoon.httpserver.game_directory import GameDirectory
+from de.mindscan.orangemoon.httpserver.game_room import GameRoom
+from de.mindscan.orangemoon.httpserver.game_player import GamePlayer
+
+
 myJamDict = Jamdict()
 
 RADICAL_STROKE_DATA = 'kanjiRadicalStrokeData.json'
@@ -174,13 +182,22 @@ async def get_quiz_data(quizname: str):
 # Stuff to manage a game channel
 # ------------------------------
 
+#gameDirectory = GameDirectory();
+
 @app.post("/OrangeMoon/rest/createGameChannel")
 async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str = Form('')):
-    # will create a game channel
+    # will create a game channel / game room
     # * setup channel e.g. expire time?
-    # will create a new user
-    # user joins the game channel
+    newGameRoom = GameRoom(quizRoomPassword)
     
+    # will create a new user
+    # TODO: set moderation_role
+    newPlayer = GamePlayer(playerName)
+    
+    # user joins the game channel
+    newGameRoom.enterRoom(newPlayer)
+    
+    # TODO: UserAuthn, UserAuthz -> Security 
     # return user token data and game channel info / accesstoken for channel
     pass
 
