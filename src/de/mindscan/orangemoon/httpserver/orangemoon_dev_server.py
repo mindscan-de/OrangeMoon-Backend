@@ -197,6 +197,11 @@ async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str =
     # user joins the game channel
     newGameRoom.enterRoom(newPlayer)
     
+    # TODO 
+    # - register the game to the game directory, 
+    # - so we can request that game by a game id 
+     
+    
     # TODO: UserAuthn, UserAuthz -> Security 
     # return user token data and game channel info / accesstoken for channel
     pass
@@ -204,6 +209,7 @@ async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str =
 @app.post("/OrangeMoon/rest/joinGameChannel")
 async def join_game_channel(playerName:str = Form(...), quizRoomId:str= Form(...), quizRoomPassword:str = Form('')): 
     # authenticate quizroomid / quizroom password
+    
     # will create a new user
     # user joins the game channel
     
