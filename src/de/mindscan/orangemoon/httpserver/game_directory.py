@@ -46,3 +46,6 @@ class GameDirectory(object):
     
     def unregister_game_room(self, game:GameRoom):
         pass
+    
+    def get_room_by_id(self, gameId):
+        return None
