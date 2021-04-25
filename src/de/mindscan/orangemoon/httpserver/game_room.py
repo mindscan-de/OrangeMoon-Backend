@@ -33,12 +33,14 @@ class GameRoom(object):
     classdocs
     '''
 
-
-    def __init__(self, params):
+    def __init__(self, quizRoomPassword:str):
         '''
         Constructor
         '''
-        pass
+        self._quiz_room_password = quizRoomPassword
+    
+    def check_room_password(self, quizRoomPassword:str):
+        return self._quiz_room_password == quizRoomPassword
     
     def enterRoom(self, player: GamePlayer):
         # TODO: 
