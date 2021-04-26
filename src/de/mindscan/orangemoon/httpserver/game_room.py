@@ -53,3 +53,5 @@ class GameRoom(object):
     def getPlayers(self):
         # TODO:
         pass
+    
+    #TODO: game configuration/ game plan? or get through game directory
