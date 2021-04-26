@@ -209,22 +209,24 @@ async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str =
 @app.post("/OrangeMoon/rest/joinGameChannel")
 async def join_game_channel(playerName:str = Form(...), quizRoomId:str= Form(...), quizRoomPassword:str = Form('')):
     global gameDirectory 
+    
+    gameRoom = gameDirectory.get_room_by_id(quizRoomId)
+    if gameRoom is None:
+        # Something is fishy...
+        return
+
     # authenticate quizroomid / quizroom password
+    if not gameRoom.check_room_password(quizRoomPassword):
+        # password is not correct
+        return
     
     # will create a new user
     newPlayer = GamePlayer(playerName)
     
     # user joins the game channel
-    gameRoom = gameDirectory.get_room_by_id(quizRoomId)
-    
-    if gameRoom is None:
-        # Something is fishy...
-        return
-    
     gameRoom.enterRoom(newPlayer)
     
-    
-    # return user token data and game channel info / accesstoken for channel
+    # return user token data and game channel info / accesstoken for channel, for playing and such...
     pass
 
 @app.post("/OrangeMoon/rest/leaveGameChannel")
