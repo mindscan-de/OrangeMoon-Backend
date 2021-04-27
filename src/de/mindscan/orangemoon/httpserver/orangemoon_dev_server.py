@@ -201,9 +201,20 @@ async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str =
     # - register the game room to the game directory, 
     gameRoomId = gameDirectory.register_game_room(newGameRoom) 
     
-    # TODO: UserAuthn, UserAuthz -> Security 
-    # return user token data and game channel info / accesstoken for channel
-    pass
+    result_dict ={
+        # you created this game channel
+        'gameChannelId' : gameRoomId,
+        # TODO: AUTHZ token for the channel
+        'gameChannelAccessToken' : '123456789',
+        
+        # you are this player
+        'playerName' : newPlayer.get_player_name(),
+        'playerMaster' : newPlayer.is_player_master(),
+        # TODO: AUTHN token for this user
+        'playerAccessToken' : '987654321'
+        }
+    
+    return result_dict
 
 @app.post("/OrangeMoon/rest/joinGameChannel")
 async def join_game_channel(playerName:str = Form(...), quizRoomId:str= Form(...), quizRoomPassword:str = Form('')):
