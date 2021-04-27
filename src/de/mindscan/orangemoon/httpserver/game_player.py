@@ -31,12 +31,16 @@ class GamePlayer(object):
     classdocs
     '''
 
-    def __init__(self, playerName):
+    def __init__(self, playerName, playerMaster=False):
         '''
         Constructor
         '''
         self._player_name = playerName
+        self._player_is_master = playerMaster
     
     
     def get_player_name(self):
         return self._player_name
+    
+    def is_player_master(self):
+        return self._player_is_master

@@ -193,8 +193,7 @@ async def create_game_channel(playerName:str = Form(...), quizRoomPassword:str =
     newGameRoom = GameRoom(quizRoomPassword)
     
     # will create a new user
-    # TODO: set moderation_role
-    newPlayer = GamePlayer(playerName)
+    newPlayer = GamePlayer(playerName, playerMaster=True)
     
     # user joins the game channel
     newGameRoom.enterRoom(newPlayer)
