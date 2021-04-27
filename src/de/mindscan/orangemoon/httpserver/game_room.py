@@ -38,16 +38,18 @@ class GameRoom(object):
         Constructor
         '''
         self._quiz_room_password = quizRoomPassword
+        self._players = []
     
     def check_room_password(self, quizRoomPassword:str):
         return self._quiz_room_password == quizRoomPassword
     
     def enterRoom(self, player: GamePlayer):
-        # TODO: 
-        pass
+        if not player in self._players:
+            self._players.append(player)  
     
     def leaveRoom(self, player: GamePlayer):
-        # TODO:
+        if player in self._players:
+            self._players.remove(player)
         pass
     
     def getPlayers(self):
